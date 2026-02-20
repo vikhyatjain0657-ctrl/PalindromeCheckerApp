@@ -1,20 +1,21 @@
 import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
  * MAIN CLASS UseCaselPalindromeApp
  * <p>
- * Use Case 5: Stack Based Palindrome Checker
+ * Use Case 6: UseCase6Palindrome CheckerApp
  * <p>
  * Description:
  * <p>
- * This class validotes a palindrome using Stock datu structure ahich follows the LIFO principle.
- * At This stage, the application:
- * Pushes characters into tack
- * Pops then in reverse order
- * Compares with original sequence
- * Displays the result
- * This maps stack Dehavior to reversal Legio
+ * This class demonstrates palindrome validation using wo different data structures:
+ * Queue (FIFO First In First Out)
+ * Stack (LIFO -Last In First Out)
+ * Characters are inserted into both structures and t then Compared by removing from the front of the queue and the top of the stack.
+ * If all characters match, the input string is confirmed as a palindrome.
+ * This use case helps understand how FIFO and LIFO Dehaviors can be combined for symmetric comparison.
  *
  * @author Vikhyat
  * @version 1.0
@@ -33,23 +34,24 @@ public class PalindromeCheckerApp {
             Scanner in = new Scanner(System.in);
             System.out.print("Enter Text: ");
             String input = in.next();
+            Queue<Character> queue = new LinkedList<>();
             Stack<Character> stack = new Stack<>();
 
             for (char c : input.toCharArray()) {
+                queue.add(c);
                 stack.push(c);
             }
 
             boolean isPalindrome = true;
 
-            for (char c : input.toCharArray()) {
-                if (c != stack.pop()) {
+            while (!queue.isEmpty()) {
+                if (!queue.poll().equals(stack.pop())) {
                     isPalindrome = false;
                     break;
                 }
             }
-
-            System.out.println("Is Palindrome?: " + isPalindrome);
-            in.close();
+            System.out.print("Is Palindrome?:");
+            System.out.println(isPalindrome);
         }
     }
 }
