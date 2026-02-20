@@ -2,20 +2,17 @@ import java.util.Scanner;
 
 /**MAIN CLASS UseCaselPalindromeApp
 
-Use Case 2: Application Entry & Welcome Message
+Use Case 4: Character Array Based Validation
 
  Description:
 
- This class demonstrates basic palindrome validation
- using a hardcoded string value.
-
+ This class validates a palindrome by converting the string into a character array and comparing characters using the two-pointer technique.
  At this stage, the application:
- Stores a predefined string
- Compares characters from both ends
- Determines whether the string is a palindrome
- Displays the result on the console
- This use case introduces fundamental comparison logic
- before using advanced data structures.
+ Converts string to char array
+ Uses start and end pointers
+ Compares characters efficiently
+ Displays the result
+ This reduces extra memory usage.
 
 @author Vikhyat
 @version 1.0
@@ -29,21 +26,23 @@ public class PalindromeCheckerApp {
      * @param args Command-line arguments
      */
     public static void main(String[] args){{
-        Scanner in=new Scanner(System.in);
-        String input;int i; boolean isPalindrome=true;
-        System.out.print("Enter String: ");
-        input=in.next();
-        for (i=0;i<input.length()/2;i++){
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter Text: ");
+        String input = in.next();
+        char[] chars = input.toCharArray();
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
-        System.out.print("Is it a Palindrome? : ");
-        if(isPalindrome==true)
-            System.out.println("True");
-        else
-            System.out.println("False");
+        System.out.println("Is Palindrome?: " + isPalindrome);
     }
     }
 }
