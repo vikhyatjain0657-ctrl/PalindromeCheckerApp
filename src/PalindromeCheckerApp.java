@@ -1,24 +1,22 @@
 import java.util.Scanner;
 
-/**
- * MAIN CLASS UseCaselPalindromeApp
- *
- * Use Case 2: Application Entry & Welcome Message
- *
- * Description:
- * This class checks whether a string is a palindrome
- * by reversing the string and comparing it with
- * the original value
- * At this stage, the application:
- * Iterates the string in reverse order
- * - Builds a reversed version
- * Compares original and reversed strings
- * Displays the validation result
- * This introduces transformation-based validation.
- *
- * @author Vikhyat
- * @version 1.0
- */
+/**MAIN CLASS UseCaselPalindromeApp
+
+Use Case 4: Character Array Based Validation
+
+ Description:
+
+ This class validates a palindrome by converting the string into a character array and comparing characters using the two-pointer technique.
+ At this stage, the application:
+ Converts string to char array
+ Uses start and end pointers
+ Compares characters efficiently
+ Displays the result
+ This reduces extra memory usage.
+
+@author Vikhyat
+@version 1.0
+*/
 
 public class PalindromeCheckerApp {
     /**
@@ -28,22 +26,24 @@ public class PalindromeCheckerApp {
      *
      * @param args Command-line arguments
      */
-    public static void main(String[] args) {
-        {
-            Scanner in = new Scanner(System.in);
-            String input,reversed="";
-            int i;
-            boolean isPalindrome = true;
-            System.out.print("Enter String: ");
-            input = in.next();
-            for (i = input.length()-1;i>=0;i--) {
-                reversed=reversed+input.charAt(i);
-                }
-            System.out.print("Is it a Palindrome? : ");
-            if (input.equals(reversed))
-                System.out.println("True");
-            else
-                System.out.println("False");
+    public static void main(String[] args){{
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter Text: ");
+        String input = in.next();
+        char[] chars = input.toCharArray();
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
+        System.out.println("Is Palindrome?: " + isPalindrome);
+    }
     }
 }
