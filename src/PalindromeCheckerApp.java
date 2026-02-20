@@ -1,22 +1,25 @@
 import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
 
-/**MAIN CLASS UseCaselPalindromeApp
-
-Use Case 4: Character Array Based Validation
-
- Description:
-
- This class validates a palindrome by converting the string into a character array and comparing characters using the two-pointer technique.
- At this stage, the application:
- Converts string to char array
- Uses start and end pointers
- Compares characters efficiently
- Displays the result
- This reduces extra memory usage.
-
-@author Vikhyat
-@version 1.0
-*/
+/**
+ * MAIN CLASS UseCaselPalindromeApp
+ * <p>
+ * Use Case 6: UseCase6Palindrome CheckerApp
+ * <p>
+ * Description:
+ * <p>
+ * This class demonstrates palindrome validation using wo different data structures:
+ * Queue (FIFO First In First Out)
+ * Stack (LIFO -Last In First Out)
+ * Characters are inserted into both structures and t then Compared by removing from the front of the queue and the top of the stack.
+ * If all characters match, the input string is confirmed as a palindrome.
+ * This use case helps understand how FIFO and LIFO Dehaviors can be combined for symmetric comparison.
+ *
+ * @author Vikhyat
+ * @version 1.0
+ */
 
 public class PalindromeCheckerApp {
     /**
@@ -26,24 +29,29 @@ public class PalindromeCheckerApp {
      *
      * @param args Command-line arguments
      */
-    public static void main(String[] args){{
-        Scanner in = new Scanner(System.in);
-        System.out.print("Enter Text: ");
-        String input = in.next();
-        char[] chars = input.toCharArray();
-        int start = 0;
-        int end = chars.length - 1;
-        boolean isPalindrome = true;
+    public static void main(String[] args) {
+        {
+            Scanner in = new Scanner(System.in);
+            System.out.print("Enter Text: ");
+            String input = in.next();
+            Queue<Character> queue = new LinkedList<>();
+            Stack<Character> stack = new Stack<>();
 
-        while (start < end) {
-            if (chars[start] != chars[end]) {
-                isPalindrome = false;
-                break;
+            for (char c : input.toCharArray()) {
+                queue.add(c);
+                stack.push(c);
             }
-            start++;
-            end--;
+
+            boolean isPalindrome = true;
+
+            while (!queue.isEmpty()) {
+                if (!queue.poll().equals(stack.pop())) {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+            System.out.print("Is Palindrome?:");
+            System.out.println(isPalindrome);
         }
-        System.out.println("Is Palindrome?: " + isPalindrome);
-    }
     }
 }
