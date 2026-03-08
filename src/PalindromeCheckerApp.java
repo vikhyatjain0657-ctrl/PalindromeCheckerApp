@@ -20,15 +20,11 @@ Use Case 13: Performance Comparison
 */
 
 public class PalindromeCheckerApp {
-    /**
-     * Application entry point.
-     * This is the first method executed by the JVIN
-     * when the program starts.
-     *
-     * @param args Command-line arguments
-     */
+
     public static void main(String[] args) {
+
         Scanner in = new Scanner(System.in);
+
         System.out.print("Enter Text: ");
         String input = in.nextLine();
         long startTime = System.nanoTime();
