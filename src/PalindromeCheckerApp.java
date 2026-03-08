@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 /**MAIN CLASS UseCaselPalindromeApp
 
-Use Case 4: Character Array Based Validation
+Use Case 12:  Strategy Pattern for Palindrome Algorithms (Advanced)
 
  Description:
 
@@ -19,31 +19,44 @@ Use Case 4: Character Array Based Validation
 */
 
 public class PalindromeCheckerApp {
-    /**
-     * Application entry point.
-     * This is the first method executed by the JVIN
-     * when the program starts.
-     *
-     * @param args Command-line arguments
-     */
-    public static void main(String[] args){{
-        Scanner in = new Scanner(System.in);
-        System.out.print("Enter Text: ");
-        String input = in.next();
-        char[] chars = input.toCharArray();
-        int start = 0;
-        int end = chars.length - 1;
-        boolean isPalindrome = true;
 
-        while (start < end) {
-            if (chars[start] != chars[end]) {
-                isPalindrome = false;
-                break;
-            }
-            start++;
-            end--;
-        }
-        System.out.println("Is Palindrome?: " + isPalindrome);
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Enter Text: ");
+        String input = in.nextLine().toLowerCase();
+
+        PalindromeStrategy strategy = new StackStrategy();
+        boolean result = strategy.check(input);
+
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome: " + result);
+
+        in.close();
     }
+}
+
+interface PalindromeStrategy {
+    boolean check(String input);
+}
+
+class StackStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
+
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
