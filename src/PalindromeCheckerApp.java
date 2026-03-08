@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 /**MAIN CLASS UseCaselPalindromeApp
 
-Use Case 4: Character Array Based Validation
+Use Case 13: Performance Comparison
 
  Description:
 
@@ -26,24 +26,27 @@ public class PalindromeCheckerApp {
      *
      * @param args Command-line arguments
      */
-    public static void main(String[] args){{
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Text: ");
-        String input = in.next();
-        char[] chars = input.toCharArray();
-        int start = 0;
-        int end = chars.length - 1;
+        String input = in.nextLine();
+        long startTime = System.nanoTime();
         boolean isPalindrome = true;
-
+        int start = 0;
+        int end = input.length() - 1;
         while (start < end) {
-            if (chars[start] != chars[end]) {
+            if (input.charAt(start) != input.charAt(end)) {
                 isPalindrome = false;
                 break;
             }
             start++;
             end--;
         }
-        System.out.println("Is Palindrome?: " + isPalindrome);
-    }
+        long endTime = System.nanoTime();
+        long executionTime = endTime - startTime;
+
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome : " + isPalindrome);
+        System.out.println("Execution Time : " + executionTime);
     }
 }
